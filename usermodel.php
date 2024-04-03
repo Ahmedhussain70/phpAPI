@@ -20,6 +20,15 @@ require 'conn.php';
         return $users;
         }
 
+        public function searchuser($id){
+            $sql = $this->conn->prepare("SELECT * FROM users WHERE id=?");
+            $sql->bind_param("s", $id);
+            $sql->execute();
+            $result = $sql->get_result();
+            return $result->fetch_assoc();
+        }
+        
+
         public function insertuser($data) {
             $sql = $this->conn->prepare("INSERT INTO users (name, lname) VALUES (?, ?)");
             $sql->bind_param("ss", $data['name'], $data['lname']);

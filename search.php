@@ -5,8 +5,12 @@ header("Access-Control-Allow-Methods: GET");
 
 require_once 'usermodel.php';
 
-$userModel = new UserModel();
-$users = $userModel->getuser();
+$userModel = new Usermodel();
+
+$id = $_GET['id'];
+
+$users = $userModel->searchuser($id);
 
 echo json_encode($users);
+
 ?>
